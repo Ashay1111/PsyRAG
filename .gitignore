@@ -1,0 +1,8 @@
+# .gitignore
+Text_database/
+__pycache__/
+
+
+# Files
+.env
+*.pyc
