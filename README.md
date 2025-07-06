@@ -1,7 +1,7 @@
 RAG for Cognitive Psychology using Gemini
 =========================================
 
-This project is a modular Retrieval-Augmented Generation (RAG) system built with LangChain, Gemini 2.0, and FAISS. It applies semantic search and natural language generation to content from psychology books and papers (You can change that)— including Daniel Kahneman's "Thinking, Fast and Slow", one of my favourite book!
+This project is a modular Retrieval-Augmented Generation (RAG) system built with LangChain, Gemini 2.0, and FAISS. It applies semantic search and natural language generation to content from psychology books and papers (You can change the genre!)— including Daniel Kahneman's "Thinking, Fast and Slow", one of my favourite book!
 
 Use Case
 --------
