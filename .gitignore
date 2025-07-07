@@ -9,3 +9,4 @@ data/
 *.pdf
 *.json
 *.txt
+.DS_Store
