@@ -1,44 +1,51 @@
 from langchain_google_genai import ChatGoogleGenerativeAI
-from retrieval import retrieve_chunks
+from retrieval import retrieve_chunks, get_retriever, retrieve_multiple_queries
 from config import gemini_api_key, google_api_key
+from query_expansion import expand_query
 
 # Format context from chunks into a prompt
 def format_context(docs):
     context_text = "\n\n".join([doc.page_content for doc in docs])
     return context_text
 
-
 # Generate answer using Gemini
-def generate_answer(query: str, k: int = 5) -> str:
-    # Retrieve relevant chunks
-    docs = retrieve_chunks(query, k=k)
-    if not docs:
-        return "No relevant documents found."
+def generate_answer(query, retriever=None, expand=True):
+    if retriever is None:
+        retriever = get_retriever()
 
-    # Format context
-    context = format_context(docs)
+    if expand:
+        reformulations = expand_query(query)
+        all_queries = [query] + reformulations
+        print("\n🔍 Expanded Queries:")
+        for i, q in enumerate(all_queries, 1):
+            print(f"{i}. {q}")
+    else:
+        all_queries = [query]
 
-    # Build prompt
-    prompt = f"""You are a brilliant psycologist. Answer the question using the context below.
+    # Retrieve documents for all queries
+    all_docs = retrieve_multiple_queries(all_queries, retriever)
 
-Context:
-{context}
+    # Remove duplicate docs by content hash
+    seen = set()
+    unique_docs = []
+    for doc in all_docs:
+        content_hash = hash(doc.page_content)
+        if content_hash not in seen:
+            seen.add(content_hash)
+            unique_docs.append(doc)
 
-Question:
-{query}
+    # Construct context string
+    context = "\n---\n".join([doc.page_content for doc in unique_docs])
 
-Answer:"""
-
-    # Call Gemini
-    model = ChatGoogleGenerativeAI(
-        model="gemini-2.0-flash",
-        temperature=0,
-        max_tokens=None,
-        max_retries=2,
+    # Prompt Gemini
+    llm = ChatGoogleGenerativeAI(model="gemini-2.0-flash", temperature=0)
+    final_prompt = (
+        f"You are a helpful assistant. Use the following context to answer the question.\n\n"
+        f"Question: {query}\n\n"
+        f"Context:\n{context}"
     )
-    response = model.invoke(prompt)
-    return response.content
-
+    response = llm.invoke(final_prompt)
+    return response.content.strip()
 
 # Optional: direct CLI test
 if __name__ == "__main__":
