@@ -13,8 +13,7 @@ The goal is to build an intelligent assistant that can:
 
 Project Structure
 -----------------
-
-<pre> ```text rag-psychology-gemini/ ├── books/ ← psychology books (PDFs) ├── research_papers/ ← research papers (PDFs) ├── data/ ← stores FAISS index ├── scripts/ │ ├── config.py │ ├── indexing.py ← loads, chunks, embeds, and indexes │ ├── retrieval.py ← retrieves top-k relevant chunks │ └── generation.py ← prompts Gemini to answer with context ├── requirements.txt ├── .gitignore └── README.md ``` </pre>
+<pre> ```text rag-psychology-gemini/ ├── books/ # psychology books (PDFs) ├── research_papers/ # research papers (PDFs) ├── data/ # stores FAISS index ├── scripts/ │ ├── config.py # central paths and model settings │ ├── indexing.py # load, chunk, embed, and save index │ ├── retrieval.py # retrieve relevant chunks from FAISS │ └── generation.py # generate answers using Gemini ├── requirements.txt # all dependencies ├── .gitignore # files/folders not tracked by Git └── README.md # project overview (you're here) ``` </pre>
 
 How to Run
 ----------
