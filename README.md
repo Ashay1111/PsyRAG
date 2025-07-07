@@ -29,8 +29,7 @@ rag-psychology-gemini/
 ├── .gitignore
 └── README.md
 
-
-
+```
 
 How to Run
 ----------
