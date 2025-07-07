@@ -13,20 +13,23 @@ The goal is to build an intelligent assistant that can:
 
 Project Structure
 -----------------
-$ tree -L 2 rag-psychology-gemini/
+### Project Structure
 
+```text
 rag-psychology-gemini/
-├── books/
-├── research_papers/
-├── data/
+├── books/                (psychology books in PDF)
+├── research_papers/      (research papers in PDF)
+├── data/                 (stores FAISS index)
 ├── scripts/
-│   ├── config.py
-│   ├── indexing.py
-│   ├── retrieval.py
-│   └── generation.py
+│   ├── config.py         (paths, constants)
+│   ├── indexing.py       (chunk + embed)
+│   ├── retrieval.py      (semantic search)
+│   └── generation.py     (LLM response)
 ├── requirements.txt
 ├── .gitignore
 └── README.md
+
+
 
 
 How to Run
