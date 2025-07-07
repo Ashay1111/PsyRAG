@@ -14,18 +14,7 @@ The goal is to build an intelligent assistant that can:
 Project Structure
 -----------------
 
-rag-psychology-gemini/
-├── books/                ← psychology books (PDFs)
-├── research_papers/      ← research papers (PDFs)
-├── data/                 ← stores FAISS index
-├── scripts/
-│   ├── config.py       
-│   ├── indexing.py       ← loads, chunks, embeds, and indexes
-│   ├── retrieval.py      ← retrieves top-k relevant chunks
-│   └── generation.py     ← prompts Gemini to answer with context
-├── requirements.txt
-├── .gitignore
-└── README.md
+<pre> ```text rag-psychology-gemini/ ├── books/ ← psychology books (PDFs) ├── research_papers/ ← research papers (PDFs) ├── data/ ← stores FAISS index ├── scripts/ │ ├── config.py │ ├── indexing.py ← loads, chunks, embeds, and indexes │ ├── retrieval.py ← retrieves top-k relevant chunks │ └── generation.py ← prompts Gemini to answer with context ├── requirements.txt ├── .gitignore └── README.md ``` </pre>
 
 How to Run
 ----------
