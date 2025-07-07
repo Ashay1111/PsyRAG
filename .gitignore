@@ -1,8 +1,11 @@
 # .gitignore
 Text_database/
 __pycache__/
-
+data/
 
 # Files
 .env
 *.pyc
+*.pdf
+*.json
+*.txt
