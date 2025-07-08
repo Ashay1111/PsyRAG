@@ -18,7 +18,7 @@ def generate_answer(query, retriever=None, expand=True):
         all_queries = [query] + reformulations
         print("\n🔍 Expanded Queries:")
         for i, q in enumerate(all_queries, 1):
-            print(f"{i}. {q}")
+            print(f"{q}")
     else:
         all_queries = [query]
 
@@ -51,5 +51,5 @@ def generate_answer(query, retriever=None, expand=True):
 if __name__ == "__main__":
     user_query = input("Ask your question: ")
     answer = generate_answer(user_query)
-    print("\n--- Gemini's Answer ---\n")
+    print("\n--- PsyRAG ---\n")
     print(answer)
